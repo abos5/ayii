@@ -21,7 +21,10 @@ class AdedeComponent extends CApplicationComponent
 	{
 
 	}
-	public function setUp(&$ctag,&$refObj)
+	/**
+	 * @todo don't think quote use is cool here;
+	 */
+	public function setUp($ctag,$refObj)
 	{
 		$this->ctag = $ctag;
 		$this->refObj = $refObj;
@@ -95,7 +98,7 @@ class AdedeComponent extends CApplicationComponent
 	{
 		// $cmspath = $this->getConfig('cmspath');
 		$tails = array(
-			'products'=>'../../uploads',///products
+			'products'=>'../../uploads/products',
 		);
 		return getcwd().'/'.$tails[$type];
 	}
@@ -108,7 +111,12 @@ class AdedeComponent extends CApplicationComponent
 		);
 		return preg_replace('#[\.\s]#', '', $arr[$type]);
 	}
-
+	public function getAllArctypeOptions()
+	{
+		require_once(DEDEINC."/typelink.class.php");
+		$tl = new TypeLink($cid);
+		return  $tl->GetOptionArray(0, 0, 0);
+	}
 }
 
 

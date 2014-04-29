@@ -32,5 +32,10 @@ class Afun
 
 		return checkDate($month,$day,$year);
 	}
-
+	
+	public static function amicrotime()
+	{
+		$time = explode(' ', microtime());
+		return (float) $time[1] + (float) $time[0];
+	}
 }
